@@ -62,6 +62,7 @@ import streamlit as st
 import numpy as np
 import tensorflow as tf
 from PIL import Image
+import h5py
 
 # Load model
 @st.cache_resource
@@ -92,6 +93,18 @@ def preprocess_image(image, target_size):
     img_array = np.expand_dims(img_array, axis=0)
     img_array = img_array / 255.0  # Normalizing the image
     return img_array
+
+f = h5py.File("keras_model.h5", mode="r+")
+model_config_string = f.attrs.get("model_config")
+
+if model_config_string.find('"groups": 1,') != -1:
+    model_config_string = model_config_string.replace('"groups": 1,', '')
+f.attrs.modify('model_config', model_config_string)
+f.flush()
+
+model_config_string = f.attrs.get("model_config")
+
+assert model_config_string.find('"groups": 1,') == -1
 
 # Streamlit UI
 st.title("🔧 Screw Anomaly Detector")
