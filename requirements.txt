@@ -1,5 +1,5 @@
 streamlit
-tensorflow==2.18.0
+tensorflow
 nump
 Pillow
 opencv-python
