@@ -28,7 +28,7 @@ def preprocess_image(image, target_size):
     image = image.resize(target_size)
     img_array = tf.keras.utils.img_to_array(image)
     img_array = np.expand_dims(img_array, axis=0)
-    img_array = img_array / 255.0  # Normalize
+    img_array = img_array / 255.0
     return img_array
 
 def patch_model_config_if_needed():
