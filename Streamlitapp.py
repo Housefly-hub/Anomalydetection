@@ -72,6 +72,6 @@ if uploaded_file:
         confidence = np.max(predictions[0]) * 100
 
         if predicted_class.lower() == "good" and confidence > 99:
-            st.success(f"✅ Prediction: **{predicted_class}** with confidence of **{confidence:.2f}%**")
+            st.success(f"✅ Prediction: **good** with confidence of **{confidence:.2f}%**")
         else:
-            st.error(f"⚠️ Prediction: **{predicted_class}** with confidence of **{confidence:.2f}%**")
+            st.error(f"⚠️ Prediction: **anomaly** with confidence of **{confidence:.2f}%**")
