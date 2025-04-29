@@ -71,7 +71,7 @@ if uploaded_file:
         predicted_class = class_names[predicted_index]
         confidence = np.max(predictions[0]) * 100
 
-        if predicted_class.lower() == "good":
+        if predicted_class.lower() == "good" and confidence > 99:
             st.success(f"✅ Prediction: **{predicted_class}** with confidence of **{confidence:.2f}%**")
         else:
             st.error(f"⚠️ Prediction: **{predicted_class}** with confidence of **{confidence:.2f}%**")
